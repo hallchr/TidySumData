@@ -23,3 +23,14 @@ df_tsv <- read_tsv("sample_data - Sheet1.tsv")
 
 ## look at the object
 head(df_tsv)
+
+#Text files
+## read TXT into R
+#also a sample and won't run without data
+df_txt <- read_delim("sample_data.txt", delim = "\t")
+
+## look at the object
+head(df_txt)
+
+#exporting data from R ********************
+write_csv(df_csv, path = "my_csv_file.csv")
