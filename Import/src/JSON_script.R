@@ -34,3 +34,7 @@ read_json("json_file.json")
 # read JSON file into R and ***********
 # simplifies nested lists into vectors and data frames
 read_json("json_file.json", simplifyVector = TRUE)
+
+##XML
+# read XML file into R
+read_xml("xml_file.xml")
