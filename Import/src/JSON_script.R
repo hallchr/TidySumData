@@ -27,3 +27,10 @@ JSONdf
 json <- toJSON(JSONdf)
 json
 ## [{"Name":"Woody","Age":40,"Occupation":"Sherriff"},{"Name":"Buzz Lightyear","Age":34,"Occupation":"Space Ranger"},{"Name":"Andy","Occupation":"Toy Owner"}]
+
+# read JSON file into R
+read_json("json_file.json")
+
+# read JSON file into R and ***********
+# simplifies nested lists into vectors and data frames
+read_json("json_file.json", simplifyVector = TRUE)
