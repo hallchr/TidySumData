@@ -29,3 +29,12 @@ albums <- tbl(db, "albums")
 artists <- tbl(db, "artists")
 
 print(albums)
+
+##How to connect to a database
+
+## This code is an example only
+con <- DBI::dbConnect(RMySQL::MySQL(), 
+                      host = "database.host.com",
+                      user = "janeeverydaydoe",
+                      password = rstudioapi::askForPassword("database_password")
+)
