@@ -9,7 +9,7 @@ library(skimr)
 #Like tidyr, this package is a core package within the tidyverse, and thus it was loaded in for you when you ran library(tidyverse) earlier. 
 #We will cover a number of functions that will help you wrangle data using dplyr:
 
-#testing git upload
+#testing git upload again
 # %>% - pipe operator for chaining a sequence of operations
 # glimpse() - get an overview of what’s included in dataset
 # filter() - filter rows
