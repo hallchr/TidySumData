@@ -152,3 +152,29 @@ skim(msleep, genus, vore, sleep_total)
 msleep %>% 
   group_by(vore) %>% 
   skim(genus, sleep_total)
+
+skim(msleep) %>% #gives a summary of data at large
+  summary()
+
+#Operations accross columns
+####across()####
+#The across() function is needed to operate across the columns of a data frame. For example, in our airquality 
+#dataset, if we wanted to compute the mean of Ozone, Solar.R, Wind, and Temp, we could do:
+
+airquality %>%
+  summarize(across(Ozone:Temp, mean, na.rm = TRUE))
+#The across() function can be used in conjunction with the mutate() and filter() functions to construct joint operations across different columns of a data frame. 
+airquality %>%
+  filter(!is.na(Ozone),
+         !is.na(Solar.R))
+#With the across() function, we can specify columns in the same way that we use the select() function. This allows us to use 
+#short-hand notation to select a large set of columns.
+airquality %>%
+  filter(across(Ozone:Solar.R, ~ !is.na(.)))
+#If we wanted to filter the data frame to remove rows with missing values in Ozone, Solar.R, Wind, and Temp, we only need to make a small change
+airquality %>%
+  filter(across(Ozone:Temp, ~ !is.na(.)))
+#The across() function can also be used with mutate() if we want to apply the same transformation to multiple columns.
+airquality %>%
+  mutate(across(Ozone:Temp, ~ replace_na(., 0))) #will replace all NAs with 0 accross the columns Ozone-Temp
+
