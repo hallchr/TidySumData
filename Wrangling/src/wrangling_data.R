@@ -91,4 +91,12 @@ msleep %>%
   select(name, sleep_rem, sleep_cycle, sleep_total) %>%
   arrange(name, sleep_total) #helpful for when there are repeated variables.
 
+#examples
+mtcars %>% 
+  filter(hp>100) %>%
+  count()
+
+mtcars %>%
+  arrange(mpg)
+
 
