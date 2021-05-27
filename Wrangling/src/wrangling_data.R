@@ -64,3 +64,31 @@ msleep %>%
   filter(order == "Primates", sleep_total > 10) %>%
   rename(total = sleep_total, rem = sleep_rem, cycle = sleep_cycle)
 
+########Reordering#########
+#reorder columns with select() function
+msleep %>%
+  filter(order == "Primates", sleep_total > 10) %>%
+  select(name, sleep_rem, sleep_cycle, sleep_total)
+#Rows can also be reordered.
+msleep %>%
+  filter(order == "Primates", sleep_total > 10) %>%
+  select(name, sleep_rem, sleep_cycle, sleep_total) %>%
+  arrange(sleep_total) #puts in ascending order
+
+msleep %>%
+  filter(order == "Primates", sleep_total > 10) %>%
+  select(name, sleep_rem, sleep_cycle, sleep_total) %>%
+  arrange(desc(sleep_total)) #descending order
+
+#arrange() will sort character vectors alphabetically.
+msleep %>%
+  filter(order == "Primates", sleep_total > 10) %>%
+  select(name, sleep_rem, sleep_cycle, sleep_total) %>%
+  arrange(name) #sorts alphabetically when not a numeric variable
+#Reorder rows based on information in multiple columns, you can specify them separated by commas.
+msleep %>%
+  filter(order == "Primates", sleep_total > 10) %>%
+  select(name, sleep_rem, sleep_cycle, sleep_total) %>%
+  arrange(name, sleep_total) #helpful for when there are repeated variables.
+
+
