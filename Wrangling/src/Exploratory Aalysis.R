@@ -35,7 +35,10 @@ share
 
 #are taller athletes more likely to medal?
 
-kraggle < kraggle %>% 
+kraggle <- kraggle %>% 
   mutate(has.medal=Medal %in% c("Gold", "Silver", "Bronze"))
 
-table(kraggle$Medal)
+table(kraggle$has.medal)
+
+ggplot(kraggle, aes(x = has.medal, y = Height)) +
+  geom_boxplot()
