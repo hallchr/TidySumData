@@ -9,6 +9,9 @@ library(stringr)
 #install.packages('htmlwidgets')
 library(htmlwidgets)
 
+# install.packages("glue")
+library(glue)
+
 #Regular expressions (regexps) are used to describe patterns within strings. They can take a little while to get the hang 
 #of but become very helpful once you do. With regexps, instead of specifying that you want to extract the first three 
 #letters of a string (as we did above), you could more generally specify that you wanted to extract all strings that 
@@ -73,6 +76,22 @@ str_view_all(addresses, "nn+") ## identify any time 'nn' shows up one or more ti
 
 str_view_all(addresses, "n{2,3}") ## identify any time n shows up two or three times 
 
+#####Glue######
+#Beyond using stringr to work with strings, there’s an additional helpful package called glue. According to the glue website:
+  
+  #Glue offers interpreted string literals that are small, fast, and dependency-free. Glue does this by embedding R expressions 
+  #in curly braces which are then evaluated and inserted into the argument string.
+
+topic <- 'tidyverse'
+glue('My favorite thing to learn about is the {topic}!') # use glue to interpret string literal
+## My favorite thing to learn about is the tidyverse!
+
+# add a description column using glue
+msleep %>%
+  mutate(description = glue("The {name} typically sleeps for {sleep_total * 60} minutes and is awake for {awake * 60} minutes each day.")) %>% 
+  select(name, sleep_total, awake, description)
+
+colors <- c('red','orange','yellow','green','blue','violet','#C8C8C8','#000000')
 
 
 
