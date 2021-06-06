@@ -6,6 +6,7 @@ library(janitor)
 #install.packages('skimr')
 library(skimr)
 library(here)
+library(readxl)
 
 census
 
@@ -78,6 +79,10 @@ age_stats <- age_stats %>%
 glimpse(age_stats)
 
 ####Crime####
+#Crime data, from the FBI’s Uniform Crime Report, are stored as an Excel file, so we’ll use a similar approach for these data:
+
+crime <- read_excel(here("data", "raw_data", "table_5_crime_in_the_united_states_by_state_2015.xls"), sheet = 1, skip = 3)
+crime
 
 crime
 colnames(crime)
@@ -86,3 +91,30 @@ violentcrime <- crime %>%
   select(c(1,3,5))
 
 violentcrime
+
+#Want to see cases per 100,000 inhabitants!
+
+violentcrime <- violentcrime %>% 
+  fill(State) %>%
+  filter(.[[2]] == "Rate per 100,000 inhabitants") %>%
+  rename( violent_crime = `Violent\ncrime1`) %>%
+  select(-`...3`)
+
+violentcrime
+
+# lower case and remove numbers from State column
+violentcrime <- violentcrime %>%
+  mutate(State = tolower(gsub('[0-9]+', '', State)))
+
+violentcrime
+
+# join with census data
+firearms <- left_join(census_stats, violentcrime, 
+                      by = c("NAME" = "State"))
+
+firearms
+
+####brady####
+brady
+
+
